@@ -7,7 +7,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ConverteDados {
-    Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).setPrettyPrinting().create();
+    Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+            .setPrettyPrinting().create();
 
     // RECEBE JSON E RETORNA OBJETO ENDEREÇO
     public Endereco converteJsonParaEndereco(String json) {
@@ -15,3 +16,4 @@ public class ConverteDados {
         return new Endereco(enderecoRecord);
     }
 }
+

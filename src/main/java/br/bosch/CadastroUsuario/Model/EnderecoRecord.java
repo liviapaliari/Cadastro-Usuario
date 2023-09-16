@@ -7,3 +7,4 @@ public record EnderecoRecord(@SerializedName("logradouro") String logradouro,
                              @SerializedName("localidade") String cidade,
                              @SerializedName("uf") String estado) {
 }
+
