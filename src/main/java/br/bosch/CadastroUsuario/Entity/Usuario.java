@@ -15,4 +15,12 @@ public class Usuario {
         this.cpf = cpf;
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d\n" +
+                "Nome: %s\n" +
+                "CPF: %s\n" +
+                "E-mail: %s", id, nome, cpf, email);
+    }
 }

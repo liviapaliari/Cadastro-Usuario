@@ -1,6 +1,9 @@
 package br.bosch.CadastroUsuario.Service;
 
+import br.bosch.CadastroUsuario.DAO.UsuarioDAO;
 import br.bosch.CadastroUsuario.Entity.Usuario;
+import br.bosch.CadastroUsuario.Util.JPAUtil;
+
 import javax.persistence.EntityManager;
 import java.io.IOException;
 import java.util.Scanner;
@@ -21,8 +24,21 @@ public class Principal {
         System.out.print("CEP: ");
         String cep = scanner.nextLine();
 
-        Usuario usuario = new Usuario(nome, cpf, email);
-
         System.out.println(converteDados.converteJsonParaEndereco(consumoAPI.obterDados(cep)));
+        System.out.println(cadastrar(nome, cpf, email).toString());
+    }
+
+    public static Usuario cadastrar(String nome, String cpf, String email) {
+        Usuario usuario = new Usuario(nome, cpf, email);
+        EntityManager entityManager = JPAUtil.getEntityManager();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(entityManager);
+
+        entityManager.getTransaction().begin();
+        usuarioDAO.cadastrar(usuario);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        return usuario;
     }
 }
