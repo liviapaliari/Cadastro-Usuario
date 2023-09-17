@@ -2,7 +2,14 @@ package br.bosch.CadastroUsuario.Entity;
 
 import br.bosch.CadastroUsuario.Model.EnderecoRecord;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "enderecos")
 public class Endereco {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String logradouro, bairro, cidade, estado;
 
     // MÉTODO CONSTRUTOR RECEBE RECORD COM CAMPOS DA API

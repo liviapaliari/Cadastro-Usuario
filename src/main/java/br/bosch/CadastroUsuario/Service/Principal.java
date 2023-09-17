@@ -1,6 +1,8 @@
 package br.bosch.CadastroUsuario.Service;
 
+import br.bosch.CadastroUsuario.DAO.EnderecoDAO;
 import br.bosch.CadastroUsuario.DAO.UsuarioDAO;
+import br.bosch.CadastroUsuario.Entity.Endereco;
 import br.bosch.CadastroUsuario.Entity.Usuario;
 import br.bosch.CadastroUsuario.Util.JPAUtil;
 
@@ -24,16 +26,17 @@ public class Principal {
         System.out.print("CEP: ");
         String cep = scanner.nextLine();
 
-        System.out.println(converteDados.converteJsonParaEndereco(consumoAPI.obterDados(cep)));
-        System.out.println(cadastrar(nome, cpf, email).toString());
+        System.out.println(cadastrar(nome, cpf, email, converteDados.converteJsonParaEndereco(consumoAPI.obterDados(cep))).toString());
     }
 
-    public static Usuario cadastrar(String nome, String cpf, String email) {
-        Usuario usuario = new Usuario(nome, cpf, email);
+    public static Usuario cadastrar(String nome, String cpf, String email, Endereco endereco) {
+        Usuario usuario = new Usuario(nome, cpf, email, endereco);
         EntityManager entityManager = JPAUtil.getEntityManager();
         UsuarioDAO usuarioDAO = new UsuarioDAO(entityManager);
+        EnderecoDAO enderecoDAO = new EnderecoDAO(entityManager);
 
         entityManager.getTransaction().begin();
+        enderecoDAO.cadastrar(endereco);
         usuarioDAO.cadastrar(usuario);
 
         entityManager.getTransaction().commit();

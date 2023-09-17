@@ -10,10 +10,21 @@ public class Usuario {
     private int id;
     private String nome, cpf, email;
 
-    public Usuario(String nome, String cpf, String email) {
+    @ManyToOne
+    private Endereco endereco;
+
+
+    // CONSTRUTOR
+    public Usuario(String nome, String cpf, String email, Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+        this.endereco = endereco;
+    }
+
+    // CONSTRUTOR VAZIO PARA VOLTAR DO ESTADO DETACHED
+    public Usuario() {
+
     }
 
     @Override
