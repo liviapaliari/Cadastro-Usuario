@@ -18,7 +18,6 @@ public class VerificaDadosTest {
         Assertions.assertEquals("13088000", VerificaDados.verificaTamanho(entrada, 8));
     }
 
-    // NÃO PASSOU
     @Test
     public void entradaDeDadosForaDoLimite() {
         String entrada = "1308800";
@@ -29,4 +28,21 @@ public class VerificaDadosTest {
             Assertions.assertEquals("Caracteres inválidos.", e.getMessage());
         }
     }
+
+    @Test
+    public void entradaDeDadosComLetras() {
+        String entrada = "1308800A";
+        try {
+            VerificaDados.verificaTamanho(entrada, 8);
+            Assertions.fail("Não gerou exceção.");
+        } catch (Exception e) {
+            Assertions.assertEquals("Caracteres inválidos.", e.getMessage());
+        }
+    }
+
+    // TESTE PARA VERIFICAR SE COLOCAR O MESMO ENDEREÇO, MAS NO COMPLEMENTO TROCAR O CASE DA LETRA. IDEAL É NÃO CADASTRAR UM ENDEREÇO NOVO, E SIM USAR O EXISTENTE.
+
+    // TESTE PARA CADASTRAR DOIS USUÁRIOS NO MESMO ENDEREÇO, O IDEAL É NÃO CRIAR ENDEREÇOS REPETIDOS NO BANCO.
+
+    // NÃO FAÇO IDEIA DE COMO TESTAR ESSAS LÓGICAS
 }
