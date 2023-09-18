@@ -16,4 +16,3 @@ public class ConverteDados {
         return new Endereco(enderecoRecord, numero, complemento);
     }
 }
-

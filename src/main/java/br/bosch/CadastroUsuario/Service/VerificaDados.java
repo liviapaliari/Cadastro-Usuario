@@ -21,4 +21,22 @@ public class VerificaDados {
         }
         return -1;
     }
+
+    public static String verificaTamanho(String informacao, int limite) {
+        informacao = limpaCaracteresEspeciais(informacao);
+
+        if (informacao.length() == limite && informacao.matches("\\d{" + limite + "}")) {
+            return informacao;
+        } else {
+            throw new IllegalArgumentException("Caracteres inválidos.");
+        }
+    }
+
+    public static String limpaCaracteresEspeciais(String informacao) {
+        informacao = informacao.replace("-", "");
+        informacao = informacao.replace(".", "");
+        informacao = informacao.replace(" ", "");
+
+        return informacao;
+    }
 }

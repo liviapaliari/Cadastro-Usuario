@@ -22,12 +22,18 @@ public class Principal {
         System.out.println("--- Cadastro de Usuário ---");
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
+
         System.out.print("CPF: ");
         String cpf = scanner.nextLine();
+        VerificaDados.verificaTamanho(cpf, 11);
+
         System.out.print("E-mail: ");
         String email = scanner.nextLine();
+
         System.out.print("CEP: ");
         String cep = scanner.nextLine();
+        VerificaDados.verificaTamanho(cep, 8);
+
         System.out.print("Nº: ");
         String numero = scanner.nextLine();
         System.out.print("Complemento: ");
