@@ -3,7 +3,7 @@ package br.bosch.CadastroUsuario.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios", uniqueConstraints = {@UniqueConstraint(columnNames={"cpf", "email"})})
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,6 @@ public class Usuario {
     @ManyToOne
     private Endereco endereco;
 
-
     // CONSTRUTOR
     public Usuario(String nome, String cpf, String email, Endereco endereco) {
         this.nome = nome;
@@ -22,16 +21,16 @@ public class Usuario {
         this.endereco = endereco;
     }
 
-    // CONSTRUTOR VAZIO PARA VOLTAR DO ESTADO DETACHED
-    public Usuario() {
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override
     public String toString() {
-        return String.format("ID: %d\n" +
-                "Nome: %s\n" +
-                "CPF: %s\n" +
-                "E-mail: %s", id, nome, cpf, email);
+        return String.format("%s, %s, %s\n", nome, cpf, email);
     }
 }

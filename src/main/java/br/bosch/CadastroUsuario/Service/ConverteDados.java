@@ -11,9 +11,9 @@ public class ConverteDados {
             .setPrettyPrinting().create();
 
     // RECEBE JSON E RETORNA OBJETO ENDEREÇO
-    public Endereco converteJsonParaEndereco(String json) {
+    public Endereco converteJsonParaEndereco(String json, String numero, String complemento) {
         EnderecoRecord enderecoRecord = gson.fromJson(json, EnderecoRecord.class);
-        return new Endereco(enderecoRecord);
+        return new Endereco(enderecoRecord, numero, complemento);
     }
 }
 
